@@ -74,26 +74,6 @@ class SearchDelegator:
                 writer.writerow(['Generation', obj_list[0], obj_list[1]])
                 for g, obj1, obj2 in zip(gen, avg_objective1, avg_objective2):
                     writer.writerow([g, obj1, obj2])
-            plt.figure(figsize=(8, 5))
-            plt.plot(gen, avg_objective1, marker='o', linestyle='-', color='b', linewidth=2, label=obj_list[0])
-            plt.xlabel('Generation', fontsize=12)
-            plt.ylabel(obj_list[0], fontsize=12)
-            plt.xlim(min(gen) - 0.1, max(gen) + 0.1)
-            plt.ylim(min(avg_objective1) - 0.005, max(avg_objective1) + 0.005)
-            plt.grid(True, linestyle='--', alpha=0.7)
-            plt.legend()
-            plt.savefig(DefaultConfig.get_config('experimental_pic')+f'{self.data_name}_{obj_list[0]}.png')
-            plt.close()
-            plt.figure(figsize=(8, 5))
-            plt.plot(gen, avg_objective2, marker='o', linestyle='-', color='r', linewidth=2, label=obj_list[1])
-            plt.xlabel('Generation', fontsize=12)
-            plt.ylabel(obj_list[1], fontsize=12)
-            plt.xlim(min(gen) - 0.1, max(gen) + 0.1)
-            plt.ylim(min(avg_objective2) - 0.005, max(avg_objective2) + 0.005)
-            plt.grid(True, linestyle='--', alpha=0.7)
-            plt.legend()
-            plt.savefig(DefaultConfig.get_config('experimental_pic')+f'{self.data_name}_{obj_list[1]}.png')
-            plt.close()
             self.pareto_front = copy.deepcopy(pareto_front)
             new_population = []
             new_architectures = {}
@@ -363,4 +343,5 @@ class SearchDelegator:
         self.save_architectures()
 
         return snapshot_path
+
 

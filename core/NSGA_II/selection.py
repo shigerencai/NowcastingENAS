@@ -6,7 +6,6 @@ from default_configs.default_config import DefaultConfig
 LOG = LOG.get_instance().get_logger()
 dominate_objectives = DefaultConfig.get_config('compare_objectives')
 
-# 快速非支配排序
 def fast_non_dominated_sort(population, population_all_models_fitness):
     population = copy.deepcopy(population)
     population_all_models_fitness = copy.deepcopy(population_all_models_fitness)
@@ -50,7 +49,6 @@ def fast_non_dominated_sort(population, population_all_models_fitness):
 def is_dominate(model_all_values_1, model_all_values_2):
     model_all_values_1 = copy.deepcopy(model_all_values_1)
     model_all_values_2 = copy.deepcopy(model_all_values_2)
-    # 获取模型所有的目标值字典
     model_values_dict_1 = model_all_values_1.get_values_dict()
     model_values_dict_2 = model_all_values_2.get_values_dict()
     equal_num = 0
@@ -139,4 +137,5 @@ def search_neighbor_values(value, values_dict):
     posite = values_list.index(value)
     left_neighbor_value = values_list[posite-1]
     right_neighbor_value = values_list[posite + 1]
+
     return copy.deepcopy(left_neighbor_value), copy.deepcopy(right_neighbor_value)

@@ -64,7 +64,7 @@ class BlockTransformation:
                 new_transformation = self.generate_random_change_combination(architecture, layer_id)
                 architecture = self.random_change_combination(architecture, new_transformation)
             else:
-                raise Exception(f'无法识别{transformation}变换')
+                raise Exception(f'Unable to recognize the {transformation} transformation')
             new_transformation.architecture_identifier = copy.deepcopy(architecture.identifier)
             architecture.transformation_history.append(new_transformation.hash)
             transformations_dict[new_transformation.hash] = copy.deepcopy(new_transformation)
@@ -544,6 +544,7 @@ class DifferentiableCombineActivateGateTransformation(object):
 
     def get_transformation_as_string(self):
         return f'sigmoid((block {self.input_id_1} processed by {self.conv_kernel}) + (block {self.input_id_2} processed by {self.conv_kernel})) {self.combination} {self.current_block_id}.}'
+
 
 
 

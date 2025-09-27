@@ -57,7 +57,6 @@ class ConvRNNCell(nn.Module):
             else:
                 raise 'An error occurred in calculate_block_result in ConvRNNCell.'
         elif len(block.inputs) == 2:
-            # 获取该块的第一个输入值
             if block.inputs[0] in self.all_blocks_output.keys():
                 input_result_1 = self.all_blocks_output[block.inputs[0]]
             elif block.inputs[0] == 1:
@@ -65,7 +64,6 @@ class ConvRNNCell(nn.Module):
             else:
                 input_block = self.blocks[block.inputs[0]]
                 input_result_1 = self.calculate_block_result(input_block, x_t, h_t, c_t, m_t)
-            # 获取该块的第二个输入值
             if block.inputs[1] in self.all_blocks_output.keys():
                 input_result_2 = self.all_blocks_output[block.inputs[1]]
             elif block.inputs[1] == 1:
@@ -73,7 +71,6 @@ class ConvRNNCell(nn.Module):
             else:
                 input_block = self.blocks[block.inputs[1]]
                 input_result_2 = self.calculate_block_result(input_block, x_t, h_t, c_t, m_t)
-            # 计算该块输出值
             if block.combination == "add":
                 output_result = input_result_1 + input_result_2
             elif block.combination == "elem_mul":
@@ -103,4 +100,5 @@ class ConvRNNCell(nn.Module):
                 m_next = self.calculate_block_result(self.blocks[block_id], x_t, h_t, c_t, m_t)
 
         return h_next, c_next, m_next
+
 

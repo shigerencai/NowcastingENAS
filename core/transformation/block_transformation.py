@@ -543,7 +543,8 @@ class DifferentiableCombineActivateGateTransformation(object):
         self.architecture_identifier = None
 
     def get_transformation_as_string(self):
-        return f'sigmoid((block {self.input_id_1} processed by {self.conv_kernel}) + (block {self.input_id_2} processed by {self.conv_kernel})) {self.combination} {self.current_block_id}.}'
+return f'sigmoid({self.conv_kernel}(block{self.input_id_1}) + {self.conv_kernel}(block{self.input_id_2})) {self.combination} {self.current_block_id}'
+
 
 
 
